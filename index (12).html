@@ -1,0 +1,434 @@
+<html lang="id" class="scroll-smooth" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MLZone.gg - Arena Informasi MLBB Terkini</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Audiowide', cursive;
+      background-color: #0a0a0a;
+      color: #e0e0e0;
+    }
+    h1, h2, h3, h4, h5 {
+      font-family: 'Orbitron', sans-serif;
+    }
+    /* Neon glow effect */
+    .neon-text {
+      color: #8a2be2;
+      text-shadow:
+        0 0 5px #8a2be2,
+        0 0 10px #8a2be2,
+        0 0 20px #8a2be2,
+        0 0 40px #7b3fe4,
+        0 0 80px #7b3fe4;
+    }
+    .neon-button {
+      background-color: #4c00ff;
+      box-shadow:
+        0 0 5px #4c00ff,
+        0 0 10px #4c00ff,
+        0 0 20px #7b3fe4,
+        0 0 40px #7b3fe4;
+      transition: box-shadow 0.3s ease;
+    }
+    .neon-button:hover {
+      box-shadow:
+        0 0 10px #7b3fe4,
+        0 0 20px #7b3fe4,
+        0 0 40px #8a2be2,
+        0 0 80px #8a2be2;
+    }
+    /* Background fog/wave effect container */
+    .bg-fog {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .fog-layer {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      opacity: 0.05;
+      animation: fogmove 60s linear infinite;
+      filter: blur(40px);
+      mix-blend-mode: screen;
+    }
+    .fog-layer:nth-child(2) {
+      animation-delay: 30s;
+      opacity: 0.07;
+      filter: blur(50px);
+    }
+    @keyframes fogmove {
+      0% { transform: translateX(0) translateY(0) scale(1); }
+      50% { transform: translateX(10%) translateY(5%) scale(1.05); }
+      100% { transform: translateX(0) translateY(0) scale(1); }
+    }
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #111;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #7b3fe4;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="relative min-h-screen flex flex-col">
+
+  <div class="bg-fog" aria-hidden="true">
+    <img src="https://placehold.co/1200x800/7b3fe4/0a0a0a?text=Fog+Layer+1" alt="Background fog effect with purple neon haze and soft glowing waves" class="fog-layer" />
+    <img src="https://placehold.co/1200x800/4c00ff/0a0a0a?text=Fog+Layer+2" alt="Background fog effect with blue electric neon haze and soft glowing waves" class="fog-layer" />
+  </div>
+
+  <header class="z-20 bg-black bg-opacity-90 backdrop-blur-md fixed top-0 left-0 right-0 shadow-lg">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <a href="#home" class="text-3xl neon-text font-orbitron font-bold tracking-widest">MLZone.gg</a>
+      <ul class="hidden md:flex space-x-8 text-lg font-semibold">
+        <li><a href="#home" class="hover:text-purple-400 transition">Home</a></li>
+        <li><a href="#build" class="hover:text-purple-400 transition">Build Hero</a></li>
+        <li><a href="#tierlist" class="hover:text-purple-400 transition">Tier List & Meta</a></li>
+        <li><a href="#tips" class="hover:text-purple-400 transition">Tips & Strategi</a></li>
+        <li><a href="#gallery" class="hover:text-purple-400 transition">Galeri Skin</a></li>
+        <li><a href="#contact" class="hover:text-purple-400 transition">Kontak</a></li>
+      </ul>
+      <button id="menuBtn" aria-label="Toggle menu" class="md:hidden text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-600">
+        <i class="fas fa-bars fa-lg"></i>
+      </button>
+    </nav>
+    <div id="mobileMenu" class="md:hidden bg-black bg-opacity-95 backdrop-blur-md shadow-lg hidden">
+      <ul class="flex flex-col space-y-4 p-4 text-lg font-semibold">
+        <li><a href="#home" class="block hover:text-purple-400 transition" onclick="toggleMenu()">Home</a></li>
+        <li><a href="#build" class="block hover:text-purple-400 transition" onclick="toggleMenu()">Build Hero</a></li>
+        <li><a href="#tierlist" class="block hover:text-purple-400 transition" onclick="toggleMenu()">Tier List & Meta</a></li>
+        <li><a href="#tips" class="block hover:text-purple-400 transition" onclick="toggleMenu()">Tips & Strategi</a></li>
+        <li><a href="#gallery" class="block hover:text-purple-400 transition" onclick="toggleMenu()">Galeri Skin</a></li>
+        <li><a href="#contact" class="block hover:text-purple-400 transition" onclick="toggleMenu()">Kontak</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="flex-grow pt-20">
+
+    <!-- Hero Section -->
+    <section id="home" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+      <div class="relative rounded-lg overflow-hidden shadow-2xl">
+        <img src="https://placehold.co/1600x600/0a0a0a/7b3fe4?text=Mobile+Legends+Hero+Splash+Art+Fredrinn" alt="Splash art of Mobile Legends hero Fredrinn in dynamic battle pose with electric purple and blue neon effects" class="w-full object-cover h-72 sm:h-96 md:h-[500px]" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent flex flex-col justify-center px-6 sm:px-12 md:px-20">
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-orbitron font-extrabold neon-text max-w-3xl leading-tight drop-shadow-lg">Welcome to MLZone – Arena Informasi MLBB Terkini</h1>
+          <p class="mt-4 text-lg sm:text-xl max-w-xl text-purple-300 drop-shadow-md">Meta Hari Ini: <span class="font-bold text-blue-400">Fredrinn EXP + Fleeting Time</span></p>
+          <a href="#build" class="inline-block mt-8 px-8 py-3 neon-button rounded-lg text-white font-semibold text-lg shadow-lg hover:scale-105 transform transition">Cek Build Terbaru</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Build Hero Terbaik -->
+    <section id="build" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+      <h2 class="text-4xl font-orbitron neon-text mb-8 text-center">Build Hero Terbaik</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <!-- Tank Role -->
+        <article class="bg-gradient-to-br from-purple-900 to-blue-900 rounded-xl p-6 shadow-lg border border-purple-700">
+          <h3 class="text-2xl font-orbitron neon-text mb-4 text-center">Tank</h3>
+          <ul class="flex flex-wrap justify-center gap-3 mb-4">
+            <li><img src="https://placehold.co/48x48/4c00ff/0a0a0a?text=Item+Shield" alt="Icon item Mobile Legends: Shield of the Lost" class="w-12 h-12" /></li>
+            <li><img src="https://placehold.co/48x48/7b3fe4/0a0a0a?text=Item+Armor" alt="Icon item Mobile Legends: Immortality Armor" class="w-12 h-12" /></li>
+            <li><img src="https://placehold.co/48x48/4c00ff/0a0a0a?text=Item+Boots" alt="Icon item Mobile Legends: Warrior Boots" class="w-12 h-12" /></li>
+          </ul>
+          <p class="text-center text-purple-300 mb-2 font-semibold">Combo Skill:</p>
+          <p class="text-center text-blue-400 italic">"Shield Slam" + "Taunt" + "Iron Will"</p>
+          <p class="text-center text-purple-300 mt-4 font-semibold">Emblem:</p>
+          <p class="text-center text-blue-400 italic">Tank Emblem - Tenacity + Vitality</p>
+        </article>
+
+        <!-- Fighter Role -->
+        <article class="bg-gradient-to-br from-purple-900 to-blue-900 rounded-xl p-6 shadow-lg border border-purple-700">
+          <h3 class="text-2xl font-orbitron neon-text mb-4 text-center">Fighter</h3>
+          <ul class="flex flex-wrap justify-center gap-3 mb-4">
+            <li><img src="https://placehold.co/48x48/4c00ff/0a0a0a?text=Item+Sword" alt="Icon item Mobile Legends: Blade of Despair" class="w-12 h-12" /></li>
+            <li><img src="https://placehold.co/48x48/7b3fe4/0a0a0a?text=Item+Boots" alt="Icon item Mobile Legends: Swift Boots" class="w-12 h-12" /></li>
+            <li><img src="https://placehold.co/48x48/4c00ff/0a0a0a?text=Item+Necklace" alt="Icon item Mobile Legends: Necklace of Durance" class="w-12 h-12" /></li>
+          </ul>
+          <p class="text-center text-purple-300 mb-2 font-semibold">Combo Skill:</p>
+          <p class="text-center text-blue-400 italic">"Fury Slash" + "Rage Burst" + "Shadow Step"</p>
+          <p class="text-center text-purple-300 mt-4 font-semibold">Emblem:</p>
+          <p class="text-center text-blue-400 italic">Fighter Emblem - Bravery + Agility</p>
+        </article>
+
+        <!-- Assassin Role -->
+        <article class="bg-gradient-to-br from-purple-900 to-blue-900 rounded-xl p-6 shadow-lg border border-purple-700">
+          <h3 class="text-2xl font-orbitron neon-text mb-4 text-center">Assassin</h3>
+          <ul class="flex flex-wrap justify-center gap-3 mb-4">
+            <li><img src="https://placehold.co/48x48/4c00ff/0a0a0a?text=Item+Dagger" alt="Icon item Mobile Legends: Blade of the Heptaseas" class="w-12 h-12" /></li>
+            <li><img src="https://placehold.co/48x48/7b3fe4/0a0a0a?text=Item+Boots" alt="Icon item Mobile Legends: Rapid Boots" class="w-12 h-12" /></li>
+            <li><img src="https://placehold.co/48x48/4c00ff/0a0a0a?text=Item+Sword" class="w-12 h-12" alt="Icon item Mobile Legends: Hunter Strike" /></li>
+          </ul>
+          <p class="text-center text-purple-300 mb-2 font-semibold">Combo Skill:</p>
+          <p class="text-center text-blue-400 italic">"Shadow Step" + "Backstab" + "Smoke Bomb"</p>
+          <p class="text-center text-purple-300 mt-4 font-semibold">Emblem:</p>
+          <p class="text-center text-blue-400 italic">Assassin Emblem - Agility + Lethality</p>
+        </article>
+
+        <!-- Mage Role -->
+        <article class="bg-gradient-to-br from-purple-900 to-blue-900 rounded-xl p-6 shadow-lg border border-purple-700">
+          <h3 class="text-2xl font-orbitron neon-text mb-4 text-center">Mage</h3>
+          <ul class="flex flex-wrap justify-center gap-3 mb-4">
+            <li><img src="https://placehold.co/48x48/4c00ff/0a0a0a?text=Item+Staff" alt="Icon item Mobile Legends: Lightning Truncheon" class="w-12 h-12" /></li>
+            <li><img src="https://placehold.co/48x48/7b3fe4/0a0a0a?text=Item+Boots" alt="Icon item Mobile Legends: Arcane Boots" class="w-12 h-12" /></li>
+            <li><img src="https://placehold.co/48x48/4c00ff/0a0a0a?text=Item+Orb" alt="Icon item Mobile Legends: Holy Crystal" class="w-12 h-12" /></li>
+          </ul>
+          <p class="text-center text-purple-300 mb-2 font-semibold">Combo Skill:</p>
+          <p class="text-center text-blue-400 italic">"Magic Missile" + "Arcane Blast" + "Mana Surge"</p>
+          <p class="text-center text-purple-300 mt-4 font-semibold">Emblem:</p>
+          <p class="text-center text-blue-400 italic">Mage Emblem - Magic Power + Cooldown Reduction</p>
+        </article>
+
+        <!-- Marksman Role -->
+        <article class="bg-gradient-to-br from-purple-900 to-blue-900 rounded-xl p-6 shadow-lg border border-purple-700">
+          <h3 class="text-2xl font-orbitron neon-text mb-4 text-center">Marksman</h3>
+          <ul class="flex flex-wrap justify-center gap-3 mb-4">
+            <li><img src="https://placehold.co/48x48/4c00ff/0a0a0a?text=Item+Bow" alt="Icon item Mobile Legends: Scarlet Phantom" class="w-12 h-12" /></li>
+            <li><img src="https://placehold.co/48x48/7b3fe4/0a0a0a?text=Item+Boots" alt="Icon item Mobile Legends: Swift Boots" class="w-12 h-12" /></li>
+            <li><img src="https://placehold.co/48x48/4c00ff/0a0a0a?text=Item+Sword" alt="Icon item Mobile Legends: Berserker's Fury" class="w-12 h-12" /></li>
+          </ul>
+          <p class="text-center text-purple-300 mb-2 font-semibold">Combo Skill:</p>
+          <p class="text-center text-blue-400 italic">"Rapid Shot" + "Piercing Arrow" + "Eagle Eye"</p>
+          <p class="text-center text-purple-300 mt-4 font-semibold">Emblem:</p>
+          <p class="text-center text-blue-400 italic">Marksman Emblem - Agility + Critical Chance</p>
+        </article>
+
+        <!-- Support Role -->
+        <article class="bg-gradient-to-br from-purple-900 to-blue-900 rounded-xl p-6 shadow-lg border border-purple-700">
+          <h3 class="text-2xl font-orbitron neon-text mb-4 text-center">Support</h3>
+          <ul class="flex flex-wrap justify-center gap-3 mb-4">
+            <li><img src="https://placehold.co/48x48/4c00ff/0a0a0a?text=Item+Shield" alt="Icon item Mobile Legends: Courage Mask" class="w-12 h-12" /></li>
+            <li><img src="https://placehold.co/48x48/7b3fe4/0a0a0a?text=Item+Boots" alt="Icon item Mobile Legends: Demon Shoes" class="w-12 h-12" /></li>
+            <li><img src="https://placehold.co/48x48/4c00ff/0a0a0a?text=Item+Necklace" alt="Icon item Mobile Legends: Oracle" class="w-12 h-12" /></li>
+          </ul>
+          <p class="text-center text-purple-300 mb-2 font-semibold">Combo Skill:</p>
+          <p class="text-center text-blue-400 italic">"Healing Wave" + "Shield Aura" + "Guardian's Blessing"</p>
+          <p class="text-center text-purple-300 mt-4 font-semibold">Emblem:</p>
+          <p class="text-center text-blue-400 italic">Support Emblem - Recovery + Movement Speed</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Tier List & Meta -->
+    <section id="tierlist" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+      <h2 class="text-4xl font-orbitron neon-text mb-8 text-center">Tier List & Meta</h2>
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 space-y-4 md:space-y-0">
+        <div>
+          <label for="roleFilter" class="block mb-1 font-semibold text-purple-300">Filter Role:</label>
+          <select id="roleFilter" class="bg-black text-purple-300 border border-purple-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600">
+            <option value="all">Semua Role</option>
+            <option value="Tank">Tank</option>
+            <option value="Fighter">Fighter</option>
+            <option value="Assassin">Assassin</option>
+            <option value="Mage">Mage</option>
+            <option value="Marksman">Marksman</option>
+            <option value="Support">Support</option>
+          </select>
+        </div>
+        <div>
+          <label for="searchHero" class="block mb-1 font-semibold text-purple-300">Cari Hero:</label>
+          <input type="text" id="searchHero" placeholder="Masukkan nama hero..." class="bg-black text-purple-300 border border-purple-700 rounded-md px-3 py-2 w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-purple-600" />
+        </div>
+      </div>
+      <div class="overflow-x-auto rounded-lg shadow-lg border border-purple-700">
+        <table class="min-w-full text-left text-purple-300">
+          <thead class="bg-gradient-to-r from-purple-900 to-blue-900 text-xl font-orbitron">
+            <tr>
+              <th class="px-6 py-3">Hero</th>
+              <th class="px-6 py-3">Role</th>
+              <th class="px-6 py-3">Tier</th>
+              <th class="px-6 py-3">Patch</th>
+            </tr>
+          </thead>
+          <tbody id="tierListBody" class="divide-y divide-purple-700">
+            <tr class="hover:bg-purple-900/30 cursor-pointer">
+              <td class="px-6 py-4 font-semibold">Fredrinn</td>
+              <td class="px-6 py-4">Fighter</td>
+              <td class="px-6 py-4 text-green-400 font-bold">S</td>
+              <td class="px-6 py-4">Patch 1.6.0</td>
+            </tr>
+            <tr class="hover:bg-purple-900/30 cursor-pointer">
+              <td class="px-6 py-4 font-semibold">Khufra</td>
+              <td class="px-6 py-4">Tank</td>
+              <td class="px-6 py-4 text-yellow-400 font-bold">A</td>
+              <td class="px-6 py-4">Patch 1.6.0</td>
+            </tr>
+            <tr class="hover:bg-purple-900/30 cursor-pointer">
+              <td class="px-6 py-4 font-semibold">Lancelot</td>
+              <td class="px-6 py-4">Assassin</td>
+              <td class="px-6 py-4 text-green-400 font-bold">S</td>
+              <td class="px-6 py-4">Patch 1.6.0</td>
+            </tr>
+            <tr class="hover:bg-purple-900/30 cursor-pointer">
+              <td class="px-6 py-4 font-semibold">Eudora</td>
+              <td class="px-6 py-4">Mage</td>
+              <td class="px-6 py-4 text-yellow-400 font-bold">A</td>
+              <td class="px-6 py-4">Patch 1.6.0</td>
+            </tr>
+            <tr class="hover:bg-purple-900/30 cursor-pointer">
+              <td class="px-6 py-4 font-semibold">Claude</td>
+              <td class="px-6 py-4">Marksman</td>
+              <td class="px-6 py-4 text-green-400 font-bold">S</td>
+              <td class="px-6 py-4">Patch 1.6.0</td>
+            </tr>
+            <tr class="hover:bg-purple-900/30 cursor-pointer">
+              <td class="px-6 py-4 font-semibold">Rafaela</td>
+              <td class="px-6 py-4">Support</td>
+              <td class="px-6 py-4 text-yellow-400 font-bold">B</td>
+              <td class="px-6 py-4">Patch 1.6.0</td>
+            </tr>
+            <tr class="hover:bg-purple-900/30 cursor-pointer">
+              <td class="px-6 py-4 font-semibold">Chou</td>
+              <td class="px-6 py-4">Fighter</td>
+              <td class="px-6 py-4 text-yellow-400 font-bold">A</td>
+              <td class="px-6 py-4">Patch 1.6.0</td>
+            </tr>
+            <tr class="hover:bg-purple-900/30 cursor-pointer">
+              <td class="px-6 py-4 font-semibold">Angela</td>
+              <td class="px-6 py-4">Support</td>
+              <td class="px-6 py-4 text-yellow-400 font-bold">B</td>
+              <td class="px-6 py-4">Patch 1.6.0</td>
+            </tr>
+            <tr class="hover:bg-purple-900/30 cursor-pointer">
+              <td class="px-6 py-4 font-semibold">Gusion</td>
+              <td class="px-6 py-4">Assassin</td>
+              <td class="px-6 py-4 text-green-400 font-bold">S</td>
+              <td class="px-6 py-4">Patch 1.6.0</td>
+            </tr>
+            <tr class="hover:bg-purple-900/30 cursor-pointer">
+              <td class="px-6 py-4 font-semibold">Harith</td>
+              <td class="px-6 py-4">Mage</td>
+              <td class="px-6 py-4 text-green-400 font-bold">S</td>
+              <td class="px-6 py-4">Patch 1.6.0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Tips & Strategi -->
+    <section id="tips" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+      <h2 class="text-4xl font-orbitron neon-text mb-8 text-center">Tips & Strategi</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <article class="bg-gradient-to-br from-purple-900 to-blue-900 rounded-xl p-6 shadow-lg border border-purple-700 hover:scale-105 transform transition cursor-pointer">
+          <h3 class="text-2xl font-orbitron neon-text mb-4">Cara Main Hyper Carry di Rank Mythic</h3>
+          <p class="text-purple-300">Pelajari cara memaksimalkan potensi hero hyper carry untuk mendominasi pertandingan dan naik rank dengan cepat.</p>
+        </article>
+        <article class="bg-gradient-to-br from-purple-900 to-blue-900 rounded-xl p-6 shadow-lg border border-purple-700 hover:scale-105 transform transition cursor-pointer">
+          <h3 class="text-2xl font-orbitron neon-text mb-4">Counter Franco Tanpa Khufra</h3>
+          <p class="text-purple-300">Strategi dan hero terbaik untuk mengatasi Franco yang sering menjadi ancaman di early game.</p>
+        </article>
+        <article class="bg-gradient-to-br from-purple-900 to-blue-900 rounded-xl p-6 shadow-lg border border-purple-700 hover:scale-105 transform transition cursor-pointer">
+          <h3 class="text-2xl font-orbitron neon-text mb-4">5 Hero Jungler Tersakit Patch Juni 2025</h3>
+          <p class="text-purple-300">Daftar hero jungler yang paling efektif dan mematikan di patch terbaru untuk membantu timmu menang.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Galeri Skin & Wallpaper -->
+    <section id="gallery" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+      <h2 class="text-4xl font-orbitron neon-text mb-8 text-center">Galeri Skin & Wallpaper</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        <div class="group relative rounded-lg overflow-hidden shadow-lg border border-purple-700 bg-black">
+          <img src="https://placehold.co/400x600/7b3fe4/0a0a0a?text=Epic+Skin+Hero+Alucard" alt="HD image of Mobile Legends epic skin for hero Alucard with purple neon effects" class="w-full h-auto object-cover" />
+          <a href="https://placehold.co/400x600/7b3fe4/0a0a0a?text=Epic+Skin+Hero+Alucard" download="Alucard_Epic_Skin.jpg" class="absolute bottom-3 right-3 bg-purple-700 bg-opacity-80 text-white px-3 py-1 rounded-md text-sm opacity-0 group-hover:opacity-100 transition">Download</a>
+        </div>
+        <div class="group relative rounded-lg overflow-hidden shadow-lg border border-purple-700 bg-black">
+          <img src="https://placehold.co/400x600/4c00ff/0a0a0a?text=Collector+Skin+Hero+Layla" alt="HD image of Mobile Legends collector skin for hero Layla with blue electric neon effects" class="w-full h-auto object-cover" />
+          <a href="https://placehold.co/400x600/4c00ff/0a0a0a?text=Collector+Skin+Hero+Layla" download="Layla_Collector_Skin.jpg" class="absolute bottom-3 right-3 bg-purple-700 bg-opacity-80 text-white px-3 py-1 rounded-md text-sm opacity-0 group-hover:opacity-100 transition">Download</a>
+        </div>
+        <div class="group relative rounded-lg overflow-hidden shadow-lg border border-purple-700 bg-black">
+          <img src="https://placehold.co/400x600/7b3fe4/0a0a0a?text=Legend+Skin+Hero+Gusion" alt="HD image of Mobile Legends legend skin for hero Gusion with purple neon glow" class="w-full h-auto object-cover" />
+          <a href="https://placehold.co/400x600/7b3fe4/0a0a0a?text=Legend+Skin+Hero+Gusion" download="Gusion_Legend_Skin.jpg" class="absolute bottom-3 right-3 bg-purple-700 bg-opacity-80 text-white px-3 py-1 rounded-md text-sm opacity-0 group-hover:opacity-100 transition">Download</a>
+        </div>
+        <div class="group relative rounded-lg overflow-hidden shadow-lg border border-purple-700 bg-black">
+          <img src="https://placehold.co/400x600/4c00ff/0a0a0a?text=Mobile+Wallpaper+Hero+Harith" alt="Mobile wallpaper HD image of Mobile Legends hero Harith with blue electric neon background" class="w-full h-auto object-cover" />
+          <a href="https://placehold.co/400x600/4c00ff/0a0a0a?text=Mobile+Wallpaper+Hero+Harith" download="Harith_Mobile_Wallpaper.jpg" class="absolute bottom-3 right-3 bg-purple-700 bg-opacity-80 text-white px-3 py-1 rounded-md text-sm opacity-0 group-hover:opacity-100 transition">Download</a>
+        </div>
+        <div class="group relative rounded-lg overflow-hidden shadow-lg border border-purple-700 bg-black">
+          <img src="https://placehold.co/1920x1080/7b3fe4/0a0a0a?text=Desktop+Wallpaper+Hero+Claude" alt="Desktop wallpaper HD image of Mobile Legends hero Claude with purple neon and electric blue effects" class="w-full h-auto object-cover" />
+          <a href="https://placehold.co/1920x1080/7b3fe4/0a0a0a?text=Desktop+Wallpaper+Hero+Claude" download="Claude_Desktop_Wallpaper.jpg" class="absolute bottom-3 right-3 bg-purple-700 bg-opacity-80 text-white px-3 py-1 rounded-md text-sm opacity-0 group-hover:opacity-100 transition">Download</a>
+        </div>
+        <div class="group relative rounded-lg overflow-hidden shadow-lg border border-purple-700 bg-black">
+          <img src="https://placehold.co/1920x1080/4c00ff/0a0a0a?text=Desktop+Wallpaper+Hero+Eudora" alt="Desktop wallpaper HD image of Mobile Legends hero Eudora with blue electric neon glow" class="w-full h-auto object-cover" />
+          <a href="https://placehold.co/1920x1080/4c00ff/0a0a0a?text=Desktop+Wallpaper+Hero+Eudora" download="Eudora_Desktop_Wallpaper.jpg" class="absolute bottom-3 right-3 bg-purple-700 bg-opacity-80 text-white px-3 py-1 rounded-md text-sm opacity-0 group-hover:opacity-100 transition">Download</a>
+        </div>
+        <div class="group relative rounded-lg overflow-hidden shadow-lg border border-purple-700 bg-black">
+          <img src="https://placehold.co/400x600/7b3fe4/0a0a0a?text=Epic+Skin+Hero+Chou" alt="HD image of Mobile Legends epic skin for hero Chou with purple neon effects" class="w-full h-auto object-cover" />
+          <a href="https://placehold.co/400x600/7b3fe4/0a0a0a?text=Epic+Skin+Hero+Chou" download="Chou_Epic_Skin.jpg" class="absolute bottom-3 right-3 bg-purple-700 bg-opacity-80 text-white px-3 py-1 rounded-md text-sm opacity-0 group-hover:opacity-100 transition">Download</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kirim Pesan ke Admin -->
+    <section id="contact" class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+      <h2 class="text-4xl font-orbitron neon-text mb-8 text-center">Kirim Pesan ke Admin</h2>
+      <form id="mlContactForm" class="bg-gradient-to-br from-purple-900 to-blue-900 rounded-xl p-8 shadow-lg border border-purple-700 space-y-6" autocomplete="off">
+        <div>
+          <label for="name" class="block mb-2 font-semibold text-purple-300">Nama</label>
+          <input type="text" id="name" name="name" placeholder="Nama kamu" required class="w-full rounded-md bg-black text-purple-300 border border-purple-700 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-600" />
+        </div>
+        <div>
+          <label for="email" class="block mb-2 font-semibold text-purple-300">Email</label>
+          <input type="email" id="email" name="email" placeholder="Email kamu" required class="w-full rounded-md bg-black text-purple-300 border border-purple-700 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-600" />
+        </div>
+        <div>
+          <label for="message" class="block mb-2 font-semibold text-purple-300">Pesan</label>
+          <textarea id="message" name="message" placeholder="Pesan kamu..." required rows="5" class="w-full rounded-md bg-black text-purple-300 border border-purple-700 px-4 py-3 resize-y focus:outline-none focus:ring-2 focus:ring-purple-600"></textarea>
+        </div>
+        <button type="submit" class="w-full neon-button rounded-lg py-3 text-white font-bold text-lg shadow-lg hover:scale-105 transform transition">KIRIM SEKARANG</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="bg-black bg-opacity-90 backdrop-blur-md text-purple-400 text-center py-6 border-t border-purple-700">
+    <p class="text-sm">&copy; 2025 MLZone.gg - Semua hak cipta dilindungi.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    emailjs.init("YOUR_USER_ID"); // Ganti dengan user ID dari EmailJS dashboard
+
+    document.getElementById("mlContactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      emailjs.sendForm("service_id", "template_id", this)
+        .then(() => alert("Pesan terkirim ke cleverdhakiun@gmail.com!"))
+        .catch((err) => alert("Gagal kirim: " + err));
+      this.reset();
+    });
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    function toggleMenu() {
+      mobileMenu.classList.toggle('hidden');
+    }
+    menuBtn.addEventListener('click', toggleMenu);
+
+    // Tier List filter and search
+    const roleFilter = document.getElementById('roleFilter');
+    const searchHero = document.getElementById('searchHero');
+    const tierListBody = document.getElementById('tierListBody');
+
+    function filterTierList() {
+      const role = roleFilter.value.toLowerCase();
+      const search = searchHero.value.toLowerCase();
+
+      for (const row of tierListBody.rows) {
+        const heroName = row.cells[0].textContent.toLowerCase();
+        const heroRole = row.cells[1].textContent.toLowerCase();
+
+        const matchesRole = role ===
